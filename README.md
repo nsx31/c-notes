@@ -1,4 +1,4 @@
-# Hello World
+# 01 Hello World
 
 ```c
 #include <stdio.h>
@@ -13,7 +13,7 @@ int main(){
 - `#include` or `#define` is a directives. Directives are commands that begins with `#` and which are meant for pre-processor.
 - when a program compiles, compiler always looks for `main()` function. `main()` function can either return 0 or 1. 0 means everything worked fine and 1 means there is some problem in code.
 
-# Coverting the program into the machine code
+# 02 Coverting the program into the machine code
 It is a three step process :
 1. **Preprocess :** Before compilation, the source code file is passed to the preprocessor, whose job is to include the code written in header files (libraries) into the source file.
 
@@ -23,7 +23,7 @@ It is a three step process :
 
 > It’s like the compiler leaves blank spaces in place of functions and variables, and then the linker fills those spaces with the correct addresses or definitions of those elements. 
 
-# Conversion Specification in C
+# 03 Conversion Specification in C
 
 The general form of conversion specification in C is : 
 ```c
@@ -83,7 +83,7 @@ printf("%.3e", 123312.54); // 1.233e+05
 printf("%.5g", 123312.54); // 1.2331e+05
 ```
 
-# Constants in C
+# 04 Constants in C
 
 In C constants are defined outside the `main()` function. 
 ```c
