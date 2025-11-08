@@ -103,6 +103,26 @@ Here, the slash `/` acts as a literal character in the format string.
 - `scanf()` expects the user to input the same character (i.e., `/`) at that position.
 - If the input does not match this pattern (for example, `12 44` without a slash), `scanf()` will stop reading at the point where the mismatch occurs.
 
+**Example :** Reading a single digit (Width Specifier)
+
+```c
+int x,y,z;
+
+scanf("%1d %1d %1d",&x, &y, &z);
+```
+If the user enters something like `345` or `3 4 5` each digit will be stored in a separate variable.
+
+```c
+User input : 345
+x = 3, y = 4, z = 5
+```
+
+**Explanation :** 
+- The number `1` in `%1d` is a field width specifier.
+- It tells `scanf()` to read only one digit (or one character that fits the format) for each variable, even if more digits are available in the input buffer.
+- Whitespace in the input (like spaces or newlines) is automatically ignored for numeric formats, so both `345` and `3 4 5` produce the same result.
+
+
 # 05 Constants in C
 
 In C constants are defined outside the `main()` function. 
