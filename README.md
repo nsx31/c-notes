@@ -83,7 +83,27 @@ printf("%.3e", 123312.54); // 1.233e+05
 printf("%.5g", 123312.54); // 1.2331e+05
 ```
 
-# 04 Constants in C
+# 04 `printf()` and `scanf()`
+- Both `printf()` and `scanf()` functions accept **formated string** as well as **conversion specifications**.
+- The `printf()` function is used for **output formatting**, while `scanf()` is used for **input formatting**.
+- `scanf()` is essentially a **pattern matching** function that tries to match the user’s input characters against the given conversion specifications.
+
+**Example :** Reading a Fraction Input
+```c
+scanf("%d/%d", &x, &y);
+```
+If the user inputs a fraction in the form of `x/y`, `scanf()` matches the pattern and assigns the values to the variables accordingly.
+
+```c
+User Input : 12/44
+x = 12, y = 44
+```
+
+Here, the slash `/` acts as a literal character in the format string.
+- `scanf()` expects the user to input the same character (i.e., `/`) at that position.
+- If the input does not match this pattern (for example, `12 44` without a slash), `scanf()` will stop reading at the point where the mismatch occurs.
+
+# 05 Constants in C
 
 In C constants are defined outside the `main()` function. 
 ```c
