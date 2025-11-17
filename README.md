@@ -122,6 +122,12 @@ x = 3, y = 4, z = 5
 - It tells `scanf()` to read only one digit (or one character that fits the format) for each variable, even if more digits are available in the input buffer.
 - Whitespace in the input (like spaces or newlines) is automatically ignored for numeric formats, so both `345` and `3 4 5` produce the same result.
 
+>Note : Precision doesn't work with `scanf()`.
+
+```c
+scanf("%5.2d", &x);     // wrong
+scanf("%5.2f", &y);     // wrong
+```
 
 # 05 Constants in C
 
@@ -133,6 +139,69 @@ In C constants are defined outside the `main()` function.
 
 int main(){
     printf("Interest rate is : %f", INTEREST_RATE);
+}
+```
+
+# 06 Statements
+
+- **Operators :** 
+
+| Symbol    | Meaning                  |
+| --------- | ------------------------ |
+| **<**     | less than                |
+| **>**     | greater than             |
+| **>=**    | greater than or equal to |
+| **<=**    | less than or equal to    |
+| **==**    | equal to                 |
+| **!=**    | not equal to             |
+| **!**     | negation                 |
+| **\|\|**  | logical or               |
+| **&&**    | logical and              |
+
+
+- **If statement :**
+
+```c
+if(condition){
+    // statements
+}else if(condition){
+    // statements
+}else{
+    // statements
+}
+```
+
+- **Ternary Operator :**
+
+```c
+condition ? runs_if_true : runs_if_false
+``` 
+
+- **Boolean values in C :** 
+There is no built-in `boolean` data type in standard C (prior to C99). When we use logical operators for comparison, the result is an integer—`0` for `false` and `1` for `true`. To make conditional expressions more readable, we can create our own `BOOLEAN` “type” or include the `<stdbool.h>` header file. In either case, the underlying type is still an integer.
+
+```c
+#define BOOLEAN int
+#define TRUE 1
+#define FALSE 0
+
+// example 
+BOOLEAN isAdmin = TRUE;
+```
+
+- **Switch Statement :**
+
+```c
+switch (expression) {
+    case constant_expression1 : 
+        // statements
+        break;
+    case constant_expression2 :
+        // statements
+        break;
+    default :
+        // statements
+        break;
 }
 ```
 
