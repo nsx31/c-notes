@@ -205,3 +205,35 @@ switch (expression) {
 }
 ```
 
+# 07 Loops
+- **While loop :**
+
+```c
+while(condition){
+    // statements 
+}
+```
+
+- **Do-While loop :**
+
+```c
+do {
+    // statements
+} while(condition);
+
+
+// Example :
+i = 10;
+do {
+    printf("%d", i);
+    i--;
+} while (i > 10);
+```
+
+- **For loop :**
+ 
+```c
+for (exp1; condition; exp2){
+    // statements
+}
+```
