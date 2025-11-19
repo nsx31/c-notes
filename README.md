@@ -237,3 +237,130 @@ for (exp1; condition; exp2){
     // statements
 }
 ```
+
+# FROM HERE ONWARDS MAKE NOTES MORE PRECISE.
+
+# 08 Types in C
+
+- **Integer Type :**
+    - Integer type are divided into two categories : `signed` and `unsigned` (by default integer values are signed in C). 
+    - `Signed` integer represents both `negative` and `positive` intgers (if MSB is `0` it suggests that number is a `positive` integer and when MSB is `1` it means that number is a `negative` number) while `unsigned` only represents `positive` integers. 
+    - Size of integer type is usually 32 bits, but it can be 16 bits in older CPUs.
+    - To construct a variable that meets our needs, we can specify that a variable is `long` or `short`, `signed` or `unsigned`.
+
+```c
+short int 
+unsigned short int
+
+long int
+unsigned long int
+
+long long int
+long long unsigned int
+
+int 
+unsigned int
+```
+
+- **Integer Constant :**
+    - **Decimal :** Contians digits from `0` to `9`, but must not begin with a `0`. For example, `12`, `467`, `8471` 
+    - **Octal :** contians only digits between `0` to `7` and must begin with a `0`. For example, `017`, `099`, `037777`.
+    - **Hexadecimal :** contains digits between `0` and `9` and letter between `a` and `f` and always begin with `0x`. For example, `0xf`, `0xff`, `0x7fff`. 
+    - To represent a `long` integer  constant use `L or l` at the end of the digit and to represent an `unsigned` integer constant use `U or u`. 
+
+```c
+// long integer constants
+15L     0377L       0x7777FL
+
+// long long integer constant
+0x4323DLL
+
+// unsigned integer constants
+15U     0377U       0x7777FU
+
+// we can use both U and L to show that constant is long and unsigned. Order of U and L
+// does not matter.
+0x777ffffffUL
+```
+
+>Octal and hexadecimal are nothing more than an alternate way of writing numbers. If we want we can use them with each other and it will work perfectly fine. `10 + 015 + 0x7fff` is a perfectly fine expression.
+
+>General rule for determining the `type` of integer constant when no suffix(`u`, `l`, `ll`) is used : for decimal its `int`, `long int`, or `long long int` and for octal and hexadecimal its `int`, `unsigned int`, `long`, `unsigned long`, `long long int`, `unsigned long long int`. C compiler will automcatically chose the type to better represent the value of that constant. Compiler will search in this order. 
+
+```c
+// for decimal :
+// int --> long int --> long long int
+
+
+// for hexadecimal and octal :
+// int --> unsigned int --> long --> unsigned long --> long long int --> unsigned long long int
+```
+
+- **Reading and Writing Integer :**
+    - The format string `%d` only works for `int` type. Reading or writing and **unsigned**, **short**, **long** integer needs new conversion specifiers.
+    - Reading and writing unsiged integer :
+    ```c
+    unsigned int a;
+
+    scanf("%u", &a);    // reads unsigned int "a" in base 10
+    printf("%u", a);    // writes unsigned int "a" in base 10
+
+    scanf("%o", &a);    // reads unsigned int "a" in base 8
+    printf("%o", a)     // writes unsigned int "a" in base 8
+
+    scanf("%x", &a);    // reads unsigned int "a" in base 16
+    printf("%x", a);    // writes unsigned int "a" in base 16
+    ```
+    - Reading and writing short integer :
+    ```c
+    // put letter "h" in front of conversion specifier
+    short int a;
+
+    scanf("%hd", &a);   // reads short signed int "a" in base 10 
+    printf("%hd", a);   // writes short signed int "a" in base 10
+
+    scanf("%hu", &a);   // reads short unsigned int "a" in base 10
+    printf("%hu", a);   // writes short unsigned int "a" in base 10
+
+    scanf("%ho", &a);   // reads short unsigned int "a" in base 8
+    printf("%ho", a);   // writes short unsigned int "a" in base 8
+
+    scanf("%hx", &a);   // reads short unsigned int "a" in base 16
+    printf("%hx", a);   // writes short unsigned int "a" in base 16
+    ```
+    - Reading and writing long integer :
+    ```c
+    // put letter "l" in front of conversion specifier
+    long int a;
+
+    scanf("%ld", &a);   // reads long signed int "a" in base 10 
+    printf("%ld", a);   // writes long signed int "a" in base 10
+
+    scanf("%lu", &a);   // reads long unsigned int "a" in base 10
+    printf("%lu", a);   // writes long unsigned int "a" in base 10
+
+    scanf("%lo", &a);   // reads long unsigned int "a" in base 8
+    printf("%lo", a);   // writes long unsigned int "a" in base 8
+
+    scanf("%lx", &a);   // reads long unsigned int "a" in base 16
+    printf("%lx", a);   // writes long unsigned int "a" in base 16
+    ```
+    - Readind and writing long long integer :
+    ```c
+    // put letter "ll" in front of conversion specifier
+    long long int a;
+
+    scanf("%lld", &a);   // reads long long signed int "a" in base 10 
+    printf("%lld", a);   // writes long long signed int "a" in base 10
+
+    scanf("%llu", &a);   // reads long long unsigned int "a" in base 10
+    printf("%llu", a);   // writes long long unsigned int "a" in base 10
+
+    scanf("%llo", &a);   // reads long long unsigned int "a" in base 8
+    printf("%llo", a);   // writes long long unsigned int "a" in base 8
+
+    scanf("%llx", &a);   // reads long long unsigned int "a" in base 16
+    printf("%llx", a);   // writes long long unsigned int "a" in base 16
+    ```
+    - To conclude : `d` represents signed integer. `u` represents unsigned integer. `o` represents integer in octal form. `x` represents integer in hexadecimal form. `l` represents long. `ll` represents long long. `h` represents short.
+
