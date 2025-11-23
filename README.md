@@ -238,8 +238,6 @@ for (exp1; condition; exp2){
 }
 ```
 
-# FROM HERE ONWARDS MAKE NOTES MORE PRECISE.
-
 # 08 Types in C
 
 - **Integer Type :**
@@ -248,19 +246,19 @@ for (exp1; condition; exp2){
     - Size of integer type is usually 32 bits, but it can be 16 bits in older CPUs.
     - To construct a variable that meets our needs, we can specify that a variable is `long` or `short`, `signed` or `unsigned`.
 
-```c
-short int 
-unsigned short int
+    ```c
+    short int a;
+    unsigned short int a;
 
-long int
-unsigned long int
+    long int a;
+    unsigned long int a;
 
-long long int
-long long unsigned int
+    long long int a;
+    long long unsigned int a;
 
-int 
-unsigned int
-```
+    int a;
+    unsigned int a;
+    ```
 
 - **Integer Constant :**
     - **Decimal :** Contians digits from `0` to `9`, but must not begin with a `0`. For example, `12`, `467`, `8471` 
@@ -268,37 +266,36 @@ unsigned int
     - **Hexadecimal :** contains digits between `0` and `9` and letter between `a` and `f` and always begin with `0x`. For example, `0xf`, `0xff`, `0x7fff`. 
     - To represent a `long` integer  constant use `L or l` at the end of the digit and to represent an `unsigned` integer constant use `U or u`. 
 
-```c
-// long integer constants
-15L     0377L       0x7777FL
+    ```c
+    // long integer constants
+    15L     0377L       0x7777FL
 
-// long long integer constant
-0x4323DLL
+    // long long integer constant
+    0x4323DLL
 
-// unsigned integer constants
-15U     0377U       0x7777FU
+    // unsigned integer constants
+    15U     0377U       0x7777FU
 
-// we can use both U and L to show that constant is long and unsigned. Order of U and L
-// does not matter.
-0x777ffffffUL
-```
+    // we can use both U and L to show that constant is long and unsigned. Order of U and L
+    // does not matter.
+    0x777ffffffUL
+    ```
 
 >Octal and hexadecimal are nothing more than an alternate way of writing numbers. If we want we can use them with each other and it will work perfectly fine. `10 + 015 + 0x7fff` is a perfectly fine expression.
 
 >General rule for determining the `type` of integer constant when no suffix(`u`, `l`, `ll`) is used : for decimal its `int`, `long int`, or `long long int` and for octal and hexadecimal its `int`, `unsigned int`, `long`, `unsigned long`, `long long int`, `unsigned long long int`. C compiler will automcatically chose the type to better represent the value of that constant. Compiler will search in this order. 
 
-```c
-// for decimal :
-// int --> long int --> long long int
+    ```c
+    // for decimal :
+    // int --> long int --> long long int
 
-
-// for hexadecimal and octal :
-// int --> unsigned int --> long --> unsigned long --> long long int --> unsigned long long int
-```
+    // for hexadecimal and octal :
+    // int --> unsigned int --> long --> unsigned long --> long long int --> unsigned long long int
+    ```
 
 - **Reading and Writing Integer :**
     - The format string `%d` only works for `int` type. Reading or writing and **unsigned**, **short**, **long** integer needs new conversion specifiers.
-    - Reading and writing unsiged integer :
+    - **Reading and writing unsiged integer :**
     ```c
     unsigned int a;
 
@@ -311,7 +308,7 @@ unsigned int
     scanf("%x", &a);    // reads unsigned int "a" in base 16
     printf("%x", a);    // writes unsigned int "a" in base 16
     ```
-    - Reading and writing short integer :
+    - **Reading and writing short integer :**
     ```c
     // put letter "h" in front of conversion specifier
     short int a;
@@ -328,7 +325,7 @@ unsigned int
     scanf("%hx", &a);   // reads short unsigned int "a" in base 16
     printf("%hx", a);   // writes short unsigned int "a" in base 16
     ```
-    - Reading and writing long integer :
+    - **Reading and writing long integer :**
     ```c
     // put letter "l" in front of conversion specifier
     long int a;
@@ -345,7 +342,7 @@ unsigned int
     scanf("%lx", &a);   // reads long unsigned int "a" in base 16
     printf("%lx", a);   // writes long unsigned int "a" in base 16
     ```
-    - Readind and writing long long integer :
+    - **Readind and writing long long integer :**
     ```c
     // put letter "ll" in front of conversion specifier
     long long int a;
@@ -363,4 +360,78 @@ unsigned int
     printf("%llx", a);   // writes long long unsigned int "a" in base 16
     ```
     - To conclude : `d` represents signed integer. `u` represents unsigned integer. `o` represents integer in octal form. `x` represents integer in hexadecimal form. `l` represents long. `ll` represents long long. `h` represents short.
+
+- **Floating type :**
+    - C provides three floating types : `float`, `double` and `long double`.
+    ```c
+    float a;
+    double a;
+    long double a;
+    ```
+
+- **Floating Constants :**
+    - Floating constants can be written in variety of ways.
+    ```c
+    57.0    57.     57.0e0      57E0        5.7e1       5.7e+1      .57e2       570.e-1  
+    ```
+    - By default floating constants are stored as `double`.
+    - To force compiler to store floating constant as `float` or `long double` use suffix `f or F` and `l or L` respectively. For example : `57.0F` represents float. `57.0L` represents long double.
+
+- **Reading and Writing floating point numbers :**
+    ```c
+    printf("%f", a);     // writes float "a" 
+    printf("%f", a);     // writes double "a"
+    printf("%LF", a);    // writes long double "a"
+
+
+    scanf("%f", &a);      // reads float "a"
+    scanf("%lf", &a);     // reads double "a"
+    scanf("%Lf", &a);     // reads long double "a"
+    ``` 
+
+- **Character type :**
+    - Character are treated as small integer in C and they are enclosed in single quote.
+    ```c
+    char ch = 'a';
+    ```
+    - Characters can be **signed** or **unsigned** just like integers.
+- **Reading and Writing Characters :**
+    - `%c` specifier is used to read and write characters.
+    ```c
+    char ch;
+
+    scanf("%c" , &ch);      // reads a single character.
+    scanf(" %c", &ch);      // skips the white space then reads the character.
+
+    printf("%c", ch);       // writes a single character.
+    ```
+    - C provides alternate way of reading and writing character : `getchar()` and `putchar()`. `getchar()` functions returns an integer thats why you might see some people using int type to store character value.
+    
+    ```c
+    char ch = 'a';
+
+    // write character
+    putchar(ch);
+
+    // read character
+    ch = getchar();
+    int chh = getchar();    // using int to store character.
+    ```
+- **Type Definiation :**
+    - Earlier we used `#define` directive to create a `Boolean` type. There's a better way to do the same thing using `typedef`.
+
+    ```c
+    typedef int Bool;
+
+    Bool isAdmin;
+    ``` 
+    - Using `typedef` to define `Bool` cause the compiler to add `Bool` to the list of type names that it recognizes. `Bool` now can be used in same way as built-in type.
+    - Type defination can make program more understandable.
+    ```c
+    typedef float Dollars;
+    Dollars cash_in, cash_out;
+
+    // above case is more informative then writing 
+    float cash_in, cash_out;
+    ```
 
