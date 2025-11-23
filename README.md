@@ -435,3 +435,42 @@ for (exp1; condition; exp2){
     float cash_in, cash_out;
     ```
 
+# Array
+- Array is a data structure which stores data of same type. 
+- One dimensional array is a simplest type of array. Conceptually elements of 1D array are arranged one after another in a single row (or column, if you prefer).
+- To declare an array, array type and number of elements its going to have is declared beforehand.
+
+```c
+int arr[10];
+```
+
+```c
+// array initialization 
+
+int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+```
+
+- Initializing few elements of an array explicitely.
+```c
+int arr[10] = {[2] = 29, [9] = 7, [14] = 48};
+```
+
+- Multi dimensional array :
+
+```c
+int arr [3][4];
+```
+
+```c
+int arr[2][2] = {
+    {1, 2},
+    {3, 4}
+};
+```
+
+```c
+// explicit declaration
+
+int arr[2][2] = {[0][0] = 1, [1][1] = 1};
+```
+
