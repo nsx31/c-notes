@@ -46,8 +46,11 @@ scanf("%d%d%f%f", &i, &j, &x, &y);          // Input: 1 -5 3.0 4.21
 
 // example 2
 scanf("%d/%d/%d", &day, &month, &year);     // Input: 12/02/1995
+
+//example 3 
+scanf("%2d", &num);                         // Input: 3242      Output: 32
 ```
 
 - Example 1 is a basic use of the **scanf** function where only conversion specifiers are used. **scanf** reads the input values sequentially and assigns them to the corresponding variables, skipping any whitespace between inputs.
 - In Example 2, both conversion specifiers and literal characters (/) are used in the format string. Here, input is successfully read only if the input exactly matches the format—that is, the numbers must be separated by /. If the / characters are missing or placed differently, scanf will stop reading input at that point.
-
+- Example 3 demonstrates how we can limit the number of digits being stored in a variable using conversion specification.
