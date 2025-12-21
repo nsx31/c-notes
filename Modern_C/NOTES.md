@@ -54,3 +54,64 @@ scanf("%2d", &num);                         // Input: 3242      Output: 32
 - Example 1 is a basic use of the **scanf** function where only conversion specifiers are used. **scanf** reads the input values sequentially and assigns them to the corresponding variables, skipping any whitespace between inputs.
 - In Example 2, both conversion specifiers and literal characters (/) are used in the format string. Here, input is successfully read only if the input exactly matches the format—that is, the numbers must be separated by /. If the / characters are missing or placed differently, scanf will stop reading input at that point.
 - Example 3 demonstrates how we can limit the number of digits being stored in a variable using conversion specification.
+
+# Boolean values in C
+C does not have a built-in Boolean type. The header file `<stdbool.h>` allows programmers to use Boolean-like values by defining the `_Bool` type along with `true` and `false`. Internally, `_Bool` is an integer: `false` is represented by `0`, and `true` is represented by a non-zero value.
+
+```c
+//example 
+_Bool flag = true;
+```
+# Switch statement
+General form :
+```c
+// general form
+switch (expression){
+    case constant-expression-1 :
+        //statements
+        break;
+    case constant-expression-2 :
+        //statements 
+        break;
+    default :
+        //statement
+        break;
+}
+```
+
+Imagine a situation where multiple **switch** cases return the same result. Instead of copy-pasting the same code repeatedly, we can group those cases together like this:
+
+```c
+switch (expression){
+    case constant-expression-1 :
+    case constant-expression-2 :
+    case constant-expression-3 :
+        //statements
+        break;
+    case constant-expression-4 :
+        //statements 
+        break;
+    default :
+        //statements 
+        break;
+}
+```
+
+- **Break :** To transfer the control out of statements or loops **break** is used.
+- **Continue :** It can be used where we want to skip iteration of a loop.
+- **Goto :** The target of a **break** is a point just beyond the end of the enclosing loop, while the target of a **continue** is a point just before the end of the loop. The **goto** statement, on the other hand, is capable of jumping to any statement in a function, provided that the statement has a label.
+
+```c
+for (d = 2; d < n; d++){
+    if (n % d == 0){
+        goto done;
+    }
+}
+
+done:
+if (d < n){
+    printf("%d is divisible by %d\n", n, d);
+}else{
+    printf("%d is prime\n", n);
+}
+```
