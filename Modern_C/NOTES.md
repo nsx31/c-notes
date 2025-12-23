@@ -115,3 +115,151 @@ if (d < n){
     printf("%d is prime\n", n);
 }
 ```
+
+# Integer Type
+Values of integer type are whole numbers. The integer type is divided into two categories: **signed** and **unsigned**. By default integer type is **signed**. The size of integer type can be 16 bit, 32 bit or 64 bit depending upon the machine and compiler the program is running on. Depending upong the value of number, i.e, how big or small a number is we can choose from **short**, **int**, **long** and **long long**. 
+
+```c
+//example 1
+int num
+unsigned int num
+
+//example 2
+short num
+unsigned short num
+
+//example 3
+long num
+unsigned long num
+
+//example 4
+long long num
+unsigned long long num
+```
+Abbreviation and their meaning :
+| Symbol | Meaning              |
+| ------ | -------------------- |
+| **d**  | signed decimal       |
+| **u**  | unsigned decimal     |
+| **o**  | unsigned octal       |
+| **x**  | unsigned hexadecimal |
+| **h**  | short                |
+| **l**  | long                 |
+| **ll** | long long            |
+
+```c
+//example 1
+unsigned int num;
+
+//when input is given in base 10
+printf("%u", num);  
+scanf("%u", &num);
+
+//when input is given in octal
+printf("%o", num);
+scanf("%o", &num);
+
+//when input is given in hexadecimal
+printf("%x", num);
+scanf("%x", &num);
+```
+
+# Integer Constants
+Ineger constants are the numbers that appears in the text of a program, not numbers that are read, written or computed. C allows integer constants to be written in decimal, octal or hexadecimal.
+- **Decimal constants:** must not begin with `0`.
+- **Octal constants:** must begin with `0`.
+- **Hexadecimal constants:** always begin with `0x`
+
+```c
+//example 1 : Integer constant's decimal representation
+15
+
+//example 2 : Integer constant's octal representation
+017
+
+//example 3 : Integer constant's hexadecimal representation
+0xf
+```
+
+By default intger constants are of **int** type. However if the value of the constant is too large to store in int then **long**, **unsigned long**, **long long** or **unsigned long long** can be used.
+
+```c
+//example 1 : long integer constant
+15L or 15l
+
+//example 2 : long long integer constant
+15LL or 15ll
+
+//example 3 : unsigned long integer constant
+15LU or 15lu
+
+//example 4 : unsigned long long integer constant
+15LLU or 15llu
+
+//example 5 : unsigned integer constant
+15U or 15u
+```
+
+# Floating Type
+It used to store numbers having digits after decimal point. C provides three floating type: **float**, **double**, **long double**. By default floating type is **double**.
+
+```c
+// example 1
+double num;
+
+scanf("%lf", &num); //When reading a value of type double, put the letter l in fron
+printf("%f", num);
+
+// example 2
+long double num;
+
+scanf("%lf", &num);
+printf("%lf", num);
+
+// example 3
+float num;
+
+scanf("%f", &num);
+printf("%f", num);
+```
+
+# Floating Constants
+By default floating constants are **double**. 
+
+```c
+//example 1 : float constant
+14.5f
+
+//example 2 : double floating point constant 
+14.5
+
+//example 3 : long double floating point constant
+14.5l
+```
+
+# Character Type
+C treats character as small integer. The connection between character and integer in C is so strong that character constants are of **int** type rather than **char** type. When a character appears in computation, C simply uses its integer value. Characters can be compared just as numbers can. Like integer type character type can also be signed or unsigned. 
+
+```c
+//example
+char ch = 'a';
+```
+
+```c
+//example 1
+printf("%c", ch);
+
+//example 2
+scanf("%c", &ch);
+```
+
+# Type Defination
+```c
+#define BOOL int
+```
+There is a better way to setup boolean type using type defination. 
+
+```c
+#typedef int Bool;
+```
+Usinf **typedef** to define **Bool** causes the compiler to add **Bool** to the list of type names that it recognizes. **Bool** can now be used in the same way as the buit-in types.
