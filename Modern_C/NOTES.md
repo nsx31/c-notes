@@ -263,3 +263,126 @@ There is a better way to setup boolean type using type defination.
 #typedef int Bool;
 ```
 Usinf **typedef** to define **Bool** causes the compiler to add **Bool** to the list of type names that it recognizes. **Bool** can now be used in the same way as the buit-in types.
+
+
+# Arrays
+An array is a data structure containing values of same data type. These values are called array elements which can be individually selected by their index value.
+
+```c
+//example 1 : declaring 1D array
+int nums[10];
+
+//example 2 : initializing 1D array
+int nums[5] = {5,8,1,9,7};
+//      or
+int nums[] = {5,8,9,1,7};
+```
+**for** loop can be used to loop through an array.
+
+```c
+// example 1 : taking user input
+int arr[10];
+
+for(int i=0; i<10; i++){
+    scanf("%d", &arr[i]);   // note "&" here
+}
+
+//example 2 : printing array elements
+for(int i=0; i<10; i++){
+    printf("%d", arr[i]);
+}
+```
+
+Multi dimensional array
+
+```c
+//example 1 : 2D array declaration
+int arr[3][4];
+
+//example 2 : 2D array initialization
+int arr[3][4] = {
+    {1,2,3,4},
+    {5,6,7,8},
+    {9,1,4,6}
+}
+//      or
+int arr[][4] = {
+    {1,2,3,4},
+    {5,6,7,8},
+    {9,1,4,6} 
+}
+```
+
+# Functions
+A function is simply a series of statements that have been grouped together and given a name.
+
+```c
+//example 
+double average(double a, double b){
+    return (a+b)/2;
+}
+
+average(4.5, 7.9);
+```
+- `a` and `b` are called function parameters.
+- `4.5` and `7.5` are functions arguments. Both 4.5 and 7.5 value will be copied to variable a and b respectively (call by value).
+
+A function must be defined above the `main` function. To avoid code clutter, we can declare the function above the `main` function and provide its definition later. This is also called **function prototypes**.
+
+```c
+#include <stdio.h>
+
+// function declaration
+double average(double a, double b);
+
+int main(){
+    // statements
+}
+
+// function definiation
+double average(double a, double b){
+    return (a+b)/2;
+}
+```
+
+When passing an **array** as a function argument, we must also pass the size of the array separately.
+```c
+// example : 1D array as a function parameter
+double average(double arr[], int size){
+    //statements
+}
+```
+- Notice that we did not specify the size of the array inside the square brackets `[]`.
+- In C, this is allowed for one-dimensional arrays.
+- However, for multidimensional arrays, C requires that all dimensions except the first be specified.
+
+```c
+// example : 2D array as a function parameter
+double average(int arr[][5], int size){
+    // statements
+}
+```
+
+A better and more flexible way to pass array sizes is to use **variable length arrays (VLAs)** as function parameters. In this approach, the array dimensions are passed as parameters, making the function more general and reusable.
+```c
+// example 1: 1D
+double average(int n, double arr[n]){
+    //statements
+}
+
+//example 2: 2D
+double average(int n, int m, int arr[n][m]){
+    // statements
+}
+```
+
+If we know the minimum size of an array we can use **static** keyword to define the size of the array. The presence of static is merely a “hint” that may allow a C compiler to generate faster instructions for accessing the array. One last note about static: If an array parameter has more than one dimension, static can be used only in the first dimension (for example, when specifying the number of rows in a two-dimensional array).
+
+```c
+
+//example 
+double average(double arr[static 4], int size){
+    //statements
+}
+```
+
