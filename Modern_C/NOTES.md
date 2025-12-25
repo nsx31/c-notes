@@ -386,3 +386,51 @@ double average(double arr[static 4], int size){
 }
 ```
 
+# Local and Static variables
+A **local variable** has block scope and uses temporary memory. For example, variables declared inside a function are local to that function, and their scope is limited to that function only. Once the function finishes executing, the memory allocated to those variables is automatically released.
+
+**Static variables**, on the other hand, retain their memory for the entire duration of the program. However, like local variables, static variables cannot be accessed outside their scope. A **static variable** is useful when you want to preserve a value between multiple calls to the same function while keeping it hidden from other functions.
+
+```c
+#include <stdio.h>
+
+int staInc(){
+    //static variable
+    static int num = 0;
+    num+=1;
+    return num;
+}
+
+int inc(){
+    //local variable
+    int num = 0;
+    num+=1;
+    return num;
+}
+
+int main(){
+
+    printf("%d\n", inc());      // 1 
+    printf("%d\n", inc());      // 1
+    printf("%d\n", inc());      // 1
+
+    printf("%d\n", staInc());   // 1
+    printf("%d\n", staInc());   // 2
+    printf("%d\n", staInc());   // 3
+    return 0;
+}
+```
+
+# Global Variables 
+Global variables are declared outside any function.
+```c
+#include <stdio.h>
+
+//global variables
+int num = 23;
+
+int main(){
+    // statements
+}
+```
+
