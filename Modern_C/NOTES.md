@@ -386,6 +386,20 @@ double average(double arr[static 4], int size){
 }
 ```
 
+One more thing: if you want to prevent a function parameter from being modified inside the function, use **const**.
+
+```c
+#define DEFAULT_INTEREST 7
+
+int loan(const int interest, int amount){
+    return interest * amount;
+}
+
+loan(DEFAULT_INTEREST, 50000);
+```
+- **const** does not affect how arguments are passed to a function.
+- It only affects what the function can do with the parameter after it receives it.
+
 # Local and Static variables
 A **local variable** has block scope and uses temporary memory. For example, variables declared inside a function are local to that function, and their scope is limited to that function only. Once the function finishes executing, the memory allocated to those variables is automatically released.
 
@@ -434,3 +448,37 @@ int main(){
 }
 ```
 
+# Pointer
+Pointer is a special variable which stores memory address of another variable. If pointer `p` is storing memorty address of variable `i`, we say that `p` is pointing to `i`.
+
+```c
+// example : declartion of pointer variable
+int *p;
+double *q;
+char *r;
+```
+
+To find the address of a variable, we use the **&** operator.
+```c
+// example : pointer initialization
+int i=0, *p;
+
+p = &i;     // p is pointing to i
+```
+Once a pointer variable points to an object, we can use **\*** (indirection) operator to access what's stored in the object. If `p` points to `i`, we can print the value of `i` as follows: 
+```c
+printf("%d", *p);
+```  
+*printf* will display the value of `i`, not the address of `i`.  We can even use the pointer variable `p` to change the value of `i`.
+
+```c
+*p = 12;
+```
+
+```c
+// example : both p and q are pointing to i
+int i, *p, *q;
+
+p = &i;
+q = p;
+```
