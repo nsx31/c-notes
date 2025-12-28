@@ -449,7 +449,7 @@ int main(){
 ```
 
 # Pointer
-Pointer is a special variable which stores memory address of another variable. If pointer `p` is storing memorty address of variable `i`, we say that `p` is pointing to `i`.
+Pointer is a special variable which stores memory address of another variable. If a pointer `p` stores the address of a variable `i`, we say that `p` is pointing to `i`.
 
 ```c
 // example : declartion of pointer variable
@@ -457,24 +457,27 @@ int *p;
 double *q;
 char *r;
 ```
+>The type of a pointer must match the type of the variable it points to.
 
-To find the address of a variable, we use the **&** operator.
+To obtain the memory address of a variable, we use the address-of operator (**&**).
 ```c
 // example : pointer initialization
-int i=0, *p;
+int i=0;
+int *p;
 
 p = &i;     // p is pointing to i
 ```
-Once a pointer variable points to an object, we can use **\*** (indirection) operator to access what's stored in the object. If `p` points to `i`, we can print the value of `i` as follows: 
+Once a pointer variable points to an object, we can use **\*** (indirection) operator to access what's stored in the object.
 ```c
 printf("%d", *p);
 ```  
-*printf* will display the value of `i`, not the address of `i`.  We can even use the pointer variable `p` to change the value of `i`.
+This prints the value of `i`, not its address.
 
+A pointer can also be used to modify the value of the variable it points to.
 ```c
 *p = 12;
 ```
-
+More than one pointer can point to the same variable.
 ```c
 // example : both p and q are pointing to i
 int i, *p, *q;
@@ -482,3 +485,19 @@ int i, *p, *q;
 p = &i;
 q = p;
 ```
+
+Pointers are commonly used in functions to access or modify variables defined outside the function.
+```c
+int add(int *a, int *b){
+    return *a + *b; 
+}
+
+
+int a=12, b=45;
+int res = add(&a, &b); 
+```
+
+Here:
+- `&a` and `&b` pass the addresses of `a` and `b`.
+- `*a` and `*b` inside the function access their values.
+
