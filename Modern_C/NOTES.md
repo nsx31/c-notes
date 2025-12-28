@@ -449,15 +449,16 @@ int main(){
 ```
 
 # Pointer
+In modern computers, main memory is divided into **bytes** and each byte has a unique address. Each variable in the program occupies one or more bytes of memory; the address of the first byte is said to be the address of the variable. 
+
 Pointer is a special variable which stores memory address of another variable. If a pointer `p` stores the address of a variable `i`, we say that `p` is pointing to `i`.
 
 ```c
 // example : declartion of pointer variable
-int *p;
-double *q;
-char *r;
+int *p;         // pointer p is pointing to object of type int
+double *q;      // pointer p is pointing to object of type double
+char *r;        // pointer p is pointing to object of type char
 ```
->The type of a pointer must match the type of the variable it points to.
 
 To obtain the memory address of a variable, we use the address-of operator (**&**).
 ```c
@@ -465,13 +466,12 @@ To obtain the memory address of a variable, we use the address-of operator (**&*
 int i=0;
 int *p;
 
-p = &i;     // p is pointing to i
+p = &i;   
 ```
 Once a pointer variable points to an object, we can use **\*** (indirection) operator to access what's stored in the object.
 ```c
-printf("%d", *p);
+printf("%d", *p);   // This prints the value of i, not its address, i.e, 0.
 ```  
-This prints the value of `i`, not its address.
 
 A pointer can also be used to modify the value of the variable it points to.
 ```c
@@ -488,16 +488,21 @@ q = p;
 
 Pointers are commonly used in functions to access or modify variables defined outside the function.
 ```c
-int add(int *a, int *b){
-    return *a + *b; 
+void add(int *res, int a, int b){
+    *res = a + b; 
 }
 
-
-int a=12, b=45;
-int res = add(&a, &b); 
+int res;
+add(&res, 12, 45); 
 ```
 
-Here:
-- `&a` and `&b` pass the addresses of `a` and `b`.
-- `*a` and `*b` inside the function access their values.
-
+Pointer as return value
+```c
+int *max(int *a, int *b){
+    if(*a > *b){
+        return a;
+    }else{
+        return b;
+    }
+}
+```
