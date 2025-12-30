@@ -585,8 +585,7 @@ Before explaining about whats happening in above four example first learn about 
 
 Good to know :
 - If there's a tie between operators then operator which is close to the variable executes first. 
-- Only **level 2** operator executes in **right to left** direction everyother operator executes in **left to right** direction when used in an expression.
-- **Postfix** operator makes a copy of variable's address and return that copy while in background it increments the variable.
+- When **level 2** operators are used in an expression, expression executes(solved?) from **right to left** direction while in case of other levels it executes in **left to right**.
 - But incase of **prefix** operator it directly operates in the variable it doesnot make any copy and in the end returns the incremented value.
 
 The deep dive :
