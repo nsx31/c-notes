@@ -506,3 +506,103 @@ int *max(int *a, int *b){
     }
 }
 ```
+
+# Pointers with Arrays
+We can use pointers to point to the arrays.
+```c
+int arr[], *p;
+
+p = &arr[0]     // p is pointing towards the first element of the array arr.
+p = arr         // this is same as saying p = &arr[0]
+```
+
+Making a pointer point to an element of an array isn’t particularly exciting. However, by performing pointer arithmetic on pointer, we can access the other elements of array.
+
+# Pointer Arithmatic
+**Adding integer to a pointer:**  If `p` points to the array element `a[i]`, then `p + j` points to `a[i+j]`.
+
+```c
+p = &a[2];    // p pointing to the 3rd element of the array.
+
+p += 6;          // now p pointing to the 9th elemet of the array.
+```  
+
+![Alt](./img/Screenshot_20251229_232609.png)
+
+**Substracting an Integer from a pointer:** If `p` points to the array element `a[i]`, then `p - j` points to `a[i-j]`. 
+
+```c
+p = &a[8];    // p pointing to the 9th element of the array.
+
+p -= 6;         // now p pointing 3rd element of the array.
+```
+![Alt](./img/Screenshot_20251229_233107.png)
+
+**Substracting one pointer from another:** When one pointer is substracted from another, the result is the distance between the pointers. Thus, if `p` points to `a[i]` and `q` points to `a[j]`, them `p - q` is equal to `i - j`.
+
+```c
+p = &a[9]
+q = &a[5]
+
+p - q   // will result in 4
+q - p   // will result in -4
+```
+
+# Using Pointer for Array Processing 
+This program will find the sum of array elements but the catch here is we will be using pointers to iterate through array.
+
+```c
+#include <stdio.h>
+
+int main(){
+    int arr[] = {1,2,3,6};
+    int *p = arr;
+    int sum = 0;
+   
+    for(p; p<&arr[4]; p++){
+        sum+=*p;
+    }
+
+    printf("%d \n", sum);   // 12
+    return 0;
+}
+```
+
+# Combining the `*` and `++` Operator
+
+|      | Code               | Who Moves?           | What is returned?            |
+| ---- | ------------------ | -------------------- | ---------------------------- |
+| 1.   | `*(p++)` or `*p++` | Pointer moves later  | Old value                    |
+| 2.   | `(*p)++`           | Nobody moves         | Old value (but target grows) |
+| 3.   | `*(++p)` or `*++p` | Pointer moves first  | New value at new address     |
+| 4.   | `++(*p)` or `++*p` | Nobody moves         | New value at old address     |
+
+Before explaining about whats happening in above four example first learn about the pecking order of c operator. 
+- **Level 1 (Strongest):** Postfix `++`, postfix `--` and `()`.
+- **Level 2:** Prefix `++`, prefix `--`, logic `!` and Dereference `*`.
+- **Level 3 (Maths operators):** `+`, `-`, `*`, `/`, `%`.
+- **Level 4 (Logicals):**  `&&`, `||`
+
+Good to know :
+- If there's a tie between operators then operator which is close to the variable executes first. 
+- Only **level 2** operator executes in **right to left** direction everyother operator executes in **left to right** direction when used in an expression.
+- **Postfix** operator makes a copy of variable's address and return that copy while in background it increments the variable.
+- But incase of **prefix** operator it directly operates in the variable it doesnot make any copy and in the end returns the incremented value.
+
+The deep dive :
+1. `*p++` : 
+    - The postfix increment (`++`) has higher precedence than dereference (`*`), so `p++` is evaluated first.
+    - Postfix `p++` passes the original pointer value to `*` and then increments `p`.
+    - Therefore, the expression dereferences the old address, while the pointer moves to the next element after evaluation.
+2. `(*p)++` : 
+    - Postfix and paranthesis has same precendence order therfore operator which is more closer to the variable will operate first in this case it was paranthesis.
+    - Therefore first the expression inside paranthesis will execute and it will return a L-value. Later that L-value it passed on to the postfix operator which returns the old value but in the background increment the value.
+    - Hence pointer remains at the same position, returns the old value but value of variable incemented by the time expression completely executes.
+3. `*++p` :
+    - prefix and derefernce has same precendece hence operator closer to the variable will execute first i.e `++p`.
+    - `++p` will operate on the original variable it will increment the value and return the incremented value to the `*`. 
+    - As a result we first move to the next element and then value present at the new address is returned.
+4. `++(*p)` :
+    - paranthesis has high precedence then the prefix operator hence expression inside paranthesis will execute first.
+    - `*p` returns a L-value which is then passed to the prefix operator which increment the value and return the inceremented value.
+    - Hence the pointer remains at the same position but the value at the old address is updated and returned.
